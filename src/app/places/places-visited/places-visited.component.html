@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="subContainer" id="subContainer" *ngIf="this.userService.userVisits.length !== 0">
+    <div class="line" [ngClass]="display === true ? 'lineShadow':'!lineShadow'"></div>
+    <div *ngFor=" let box of boxes; let i = index" [className]="i % 2 === 0 ? 'box leftBox':'box rightBox'"
+      id="box{{i}}">
+      <div
+        [ngClass]="[i === classSet3[i] || i % 4 === 0 ? 'infoBoxLeft':'!infoBoxLeft', (i + 1) % 4 === 0 ? 'infoBoxRight':'!infoBoxRight']">
+        <div class="idGroupCol">
+          <p id="street2{{i}}" class="streetName"></p>
+          <p id="street{{i}}" class="streetName"></p>
+        </div>
+        <div class="idGroupRow">
+          <p id="city{{i}}" class="city"></p>
+          <p id="state{{i}}" class="state"></p>
+          <p id="zipCode{{i}}" class="zipCode"></p>
+        </div>
+        <div class="idGroup">
+          <p id="country{{i}}" class="country"></p>
+        </div>
+
+      </div>
+      <div
+        [ngClass]="[classSet2[i] % 2 === 0? 'infoRightOpposite':'!infoRightOpposite', (i + 1) % 2 === 1 ? 'infoLeftOpposite':'!infoLeftOpposite']">
+        <p id="year{{i}}" [ngClass]="i % 4 === 2 || (i+1) % 4 === 2 ? 'year':'!year'" (click)="displayActive(i)">
+        </p>
+        <p id="month{{i}}" class="month">
+        </p>
+        <p id="age{{i}}" class="age"></p>
+      </div>
+    </div>
+  </div>
+  <div id="subContainer" *ngIf="this.userService.userVisits.length === 0">
+    <p>Nothing here. Head over to search to add some places you visited</p>
+  </div>
+</div>

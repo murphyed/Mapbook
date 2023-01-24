@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Island+Moments&family=Josefin+Sans:wght@300;400&family=Tajawal:wght@200;300;400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Tajawal", sans-serif;
+}
+
+body {
+  background-color: #1b262c;
+  color: #bbe1fa;
+}

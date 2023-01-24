@@ -1,0 +1,133 @@
+.container {
+  /* border: 2px solid red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.75rem;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  text-align: center;
+  height: fit-content;
+  /* margin-top: .5rem; */
+}
+
+.subContainer {
+  /* border: 2px solid greenyellow; */
+  transform: translateX(-8px);
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+h2 {
+  font-family: "Tajawal", sans-serif;
+  letter-spacing: 0.15rem;
+  font-weight: 400;
+  color: #5a97c0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.15rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.45rem;
+  border: 1px solid transparent;
+  transition: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: default;
+}
+
+button {
+  background-color: #1b262c;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid #1b262c;
+  color: #7baed1;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  padding-bottom: 1.5rem;
+  padding-left: 0.2rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  box-shadow: 5px 5px 20px 1px rgba(0, 0, 0, 0.3),
+    -5px -5px 20px 1px rgb(187, 255, 250, 0.04);
+  transition: 400ms;
+}
+button:hover {
+  color: #bbe1fa;
+}
+
+@keyframes switchButtonLeft {
+  0% {
+    border-radius: default;
+    box-shadow: default;
+    color: default;
+    transform: scale(1);
+  }
+  50% {
+    border-radius: 20% 40%;
+    color: #7baed1;
+    box-shadow: inset 5px 5px 15px 1px rgb(90, 151, 192, 0.1),
+      inset -5px -5px 20px 1px rgba(90, 151, 192, 0.1);
+    transform: scale(0.93);
+  }
+  100% {
+    border-radius: default;
+    box-shadow: default;
+    color: default;
+    transform: scale(1);
+  }
+}
+@keyframes switchButtonRight {
+  0% {
+    border-radius: default;
+    box-shadow: default;
+    color: default;
+    transform: scale(1);
+  }
+  50% {
+    border-radius: 40% 20%;
+    color: #7baed1;
+    box-shadow: inset 5px 5px 15px 1px rgb(90, 151, 192, 0.1),
+      inset -5px -5px 20px 1px rgba(90, 151, 192, 0.1);
+    transform: scale(0.93);
+  }
+  100% {
+    border-radius: default;
+    box-shadow: default;
+    color: default;
+    transform: scale(1);
+  }
+}
+
+.leftSwitch {
+  animation: switchButtonLeft;
+  animation-duration: 2.15s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.rightSwitch {
+  animation: switchButtonRight;
+  animation-duration: 2.15s;
+  animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+button:hover {
+  cursor: pointer;
+}
+
+.router-link-active {
+  transition: 500ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  background-color: #1b262c;
+  border: 1px solid #bbe1fa;
+  color: #bbe1fa;
+  box-shadow: 0 0 100px #245e85;
+}
+
+@media (max-width: 400px) {
+  .container {
+    gap: 0.84rem;
+  }
+}

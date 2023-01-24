@@ -1,0 +1,29 @@
+<nav>
+  <div class="logoContainer">
+    <h1 routerLink="/dashboard">MAP.</h1>
+    <p class="bookLogo">book</p>
+  </div>
+  <div class="showBtn" (click)="onShowClick()" (mouseover)="onMouseIn()" (mouseleave)="onMouseOut()">
+    <div id="inner1" class="innerCircle"
+      [ngClass]="[active === true ? 'inner1Active':'!inner1Active', active === false ? 'inner1Inactive':'!inner1Inactive']">
+      <input [disabled]="active === false || active === null" type="image" class="icons"
+        [ngClass]="active === true ? 'iconsVisible':'iconsHide'"
+        src="https://img.icons8.com/material/24/7baed1/dashboard-layout.png" routerLink="/dashboard" />
+    </div>
+    <div id="inner2" class="innerCircle"
+      [ngClass]="[active === true ? 'inner2Active':'!inner2Active', active === false ? 'inner2Inactive':'!inner2Inactive']">
+      <input [disabled]="active === false || active === null" type="image" class="icons"
+        [ngClass]="active === true ? 'iconsVisible':'iconsHide'"
+        src="https://img.icons8.com/ios-glyphs/30/7baed1/search--v1.png" routerLink="/search" />
+    </div>
+    <div id="inner3" class="innerCircle"
+      [ngClass]="[active === true ? 'inner3Active':'!inner3Active', active === false ? 'inner3Inactive':'!inner3Inactive']">
+      <input [disabled]="active === false || active === null" type="image" class="icons"
+        [ngClass]="active === true ? 'iconsVisible':'iconsHide'"
+        src="https://img.icons8.com/ios-glyphs/30/7baed1/order-delivered.png" routerLink="/places/places-lived" />
+    </div>
+    <input [disabled]="active === false || active === null" type="image" class="logout"
+      [ngClass]="active === true ? 'logoutActive':'!logoutActive'"
+      src="https://img.icons8.com/ios/50/bbe1fa/logout-rounded-left.png" (click)="activeLogout()" />
+  </div>
+</nav>

@@ -1,0 +1,191 @@
+<div class="container">
+  <div class="introContainer">
+    <h1 class="lineOne">A few details to get your <span class="mapbook">MapBook</span> ready.</h1>
+  </div>
+  <section class="formContainer">
+    <form [formGroup]="newUser" (ngSubmit)="newUser">
+      <div class="formType" *ngIf="formNo === 1">
+        <label for="name" class="field"> Let's start with your name.</label>
+        <div class="buttonin">
+          <input type="text" class="fieldInput" placeholder="name" formControlName="name" #name
+            [ngClass]="!isInputEmpty ? 'fieldInputFocus':'!fieldInputFocus'" (input)="checkNameInput()" #inputField>
+        </div>
+        <button class="nextButton" [disabled]="isInputEmpty" (click)="handleNewUser(newUser)">></button>
+      </div>
+
+      <div class="formType" *ngIf="formNo === 2">
+        <label for="month" class="field"> Great! Let's get your birth month.</label>
+        <div class="buttonin">
+          <select class="inputFieldMonth" formControlName="month" #dobM
+            [ngClass]="[!isInputEmpty ? 'inputFieldMonthActive':'!inputFieldMonthActive', isSafari === true ? 'forSafari':'!forSafari']"
+            (input)="checkMonthInput()" #inputFieldMonth>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+        </div>
+        <button class="nextButton" [disabled]="isInputEmpty" (click)="handleNewUser(newUser)">></button>
+      </div>
+
+      <div class="formType" *ngIf="formNo === 3">
+        <label for="year" class="field">Now let's get your birth year.</label>
+        <div class="buttonin">
+          <input type="number" min="1930" #year max="{{ currentYear }}" class="fieldInput" placeholder="YYYY"
+            formControlName="year" [ngClass]="!isInputEmpty ? 'fieldInputFocus':'!fieldInputFocus'"
+            (input)="checkYearInput()" #inputField>
+        </div>
+        <button class="nextButton" [disabled]="isInputEmpty" (click)="handleNewUser(newUser)">></button>
+      </div>
+
+      <div class="formType" *ngIf="formNo === 4">
+        <label for="pastAddressesCount" class="field">No. of past residences</label>
+        <div class="buttonin">
+          <input type="number" #pastAddressesCount class="fieldInput" placeholder="0 to ..."
+            formControlName="pastAddressesCount" [ngClass]="!isInputEmpty ? 'fieldInputFocus':'!fieldInputFocus'"
+            (input)="checkPastAddressesCountInput()" #inputField>
+        </div>
+        <button class="nextButton" [disabled]="isInputEmpty" (click)="handleNewUser(newUser)">></button>
+      </div>
+    </form>
+
+    <form [formGroup]="currentForm" (ngSubmit)="currentForm">
+      <div class="formType" *ngIf="formNo === 5">
+        <label class="field">Let's get your current address.</label>
+        <div class="currentView">
+          <p class="addCurrent" (click)="changeFocus()" [hidden]="focusIn === true" #addCurrent>+</p>
+          <div [ngClass]="focusIn === true ? 'currentViewSubActive':'currentViewSubInactive'">
+            <div *ngIf="currentSubFormNo === 1">
+              <div class="section">
+                <input #searchAuto class="searchCurrentActive"
+                  [ngClass]="isInputEmpty === false ? 'searchCurrentActiveFocus':'!searchCurrentActiveFocus'"
+                  placeholder="Search Address" [hidden]="innerFocusIn === false" (input)="checkCurrentInput()"
+                  (input)="initAuto()">
+              </div>
+              <div class="section" [hidden]="innerFocusIn === false">
+                <p class="addressFoundLabel1" [hidden]="innerFocusIn === false" #addressFoundLabel>Address found:</p>
+                <p [hidden]="innerFocusIn === false" class="addressFoundValue1" #currentAddressView>Lorem ipsum dolor
+                  sit, amet consectetur adipisicing elit!</p>
+              </div>
+            </div>
+
+
+            <div *ngIf="currentSubFormNo === 2" [ngClass]="currentSubFormNo === 2 ? 'subForm':'!subForm'">
+              <div class="section">
+                <input class="street2" type="text" placeholder="Apt, Unit, Bldg" #street2Input
+                  (input)="checkStreet2Input()" formControlName="street2">
+                <div class="street2Sub">
+                  <button class="skipBtn" [disabled]="disabled === false"
+                    (click)="handleNewUserCurrent(currentForm)">skip</button>
+                  <p class="addressFoundLabel2">for</p>
+                </div>
+                <p class="addressFoundValue2">{{ currentAddressDisplay }} </p>
+              </div>
+            </div>
+
+
+            <div *ngIf="currentSubFormNo === 3" [ngClass]="currentSubFormNo === 3 ? 'subForm':'!subForm'">
+              <div class="section">
+                <p class="subForm3Text1">Date moved to:</p>
+                <p class="subForm3Text2">{{ currentAddressDisplay }}</p>
+                <div class="street3Sub">
+                  <select (input)="checkAddressMonthYearInput()" class="inputFieldMonthForm"
+                    formControlName="monthNumber" [ngClass]="isSafari === true ? '!forSafari' :'!forSafari'"
+                    #addressMonth>
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                  <input class="inputFieldYearForm" type="number" min="1930" formControlName="year" #year
+                    max="{{ currentYear }}" placeholder="YYYY" #addressYear (input)="checkAddressMonthYearInput()">
+                </div>
+              </div>
+
+            </div>
+            <button *ngIf="currentSubFormNo === 1" class="currentFormBtn1" [hidden]="innerFocusIn === false"
+              #currentFormBtn1 (click)="handleNewUserCurrent(currentForm)">></button>
+            <button *ngIf="currentSubFormNo === 2" class="currentFormBtn2" #currentFormBtn2
+              (click)="handleNewUserCurrent(currentForm)" [disabled]="disabled === true">></button>
+            <button *ngIf="currentSubFormNo === 3" class="currentFormBtn3" #currentFormBtn3
+              (click)="handleNewUserCurrent(currentForm)" [disabled]="disabled">></button>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <form [formGroup]="pastForm" (ngSubmit)="pastForm">
+      <div class=" formType" *ngIf="formNo === 6">
+        <label class="field">Let's add your past addresses.</label>
+        <div class="currentView">
+          <p class="addCurrent" (click)="changeFocus()" [hidden]="focusIn === true" #addCurrent
+            (click)="displayPastForm()">+</p>
+          <div [ngClass]="focusIn === true ? 'currentViewSubActive':'currentViewSubInactive'">
+            <div *ngIf="pastFormDisplay === true" class="pastFormContainer">
+              <div class="pastSection1">
+                <p class="addressCountDisplay" #addressCountDisplay>{{ initialPastAddressCount }} of {{ pastAddressCount
+                  }}</p>
+                <input #searchAuto2 class="searchCurrentActive2"
+                  [ngClass]="isInputEmpty === false ? 'searchCurrentActiveFocus':'!searchCurrentActiveFocus'"
+                  placeholder="Search Address" [hidden]="innerFocusIn === false" (input)="checkCurrentInput()"
+                  (input)="initAuto()">
+              </div>
+              <div class="pastSection2" [hidden]="innerFocusIn === false">
+                <p [hidden]="innerFocusIn === false" class="addressFoundValue3" #currentAddressView2> Lorem ipsum dolor
+                  sit, amet consectetur adipisicing elit!</p>
+
+              </div>
+
+              <div class="pastSection3" [hidden]="innerFocusIn === false" #pastSection3>
+                <div class="pastFormSubContainer">
+                  <select class="inputFieldMonthForm2" formControlName="monthNumber"
+                    [ngClass]="isSafari === true ? '!forSafari' :'!forSafari'" #addressMonthPast
+                    (input)="checkAddressMonthYearInput()">
+                    <option value="1">January</option>
+                    <option value="2">February</option>
+                    <option value="3">March</option>
+                    <option value="4">April</option>
+                    <option value="5">May</option>
+                    <option value="6">June</option>
+                    <option value="7">July</option>
+                    <option value="8">August</option>
+                    <option value="9">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                  </select>
+                  <input class="inputFieldYearForm2" type="number" min="1930" max="{{ currentYear }}"
+                    formControlName="year" placeholder="YYYY" #addressYearPast (input)="checkAddressMonthYearInput()">
+                </div>
+                <input class="pastStreet2" placeholder="#Apt (optional)" formControlName="street2">
+              </div>
+            </div>
+            <button class="pastFormBtn" [hidden]="innerFocusIn === false" #pastFormBtn
+              (click)="handleNewUserPast(pastForm)" [disabled]="disabled">></button>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class=" formType" *ngIf="formNo === 7">
+      <p class="heading">You're all set!</p>
+      <p>Click done to view your dashboard.</p>
+      <button class="finishedBtn" (click)="toDashBoard()">DONE</button>
+    </div>
+  </section>
+</div>

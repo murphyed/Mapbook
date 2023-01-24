@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="subContainer">
+    <section class="sectionOne">
+      <div class="greetingContainer">
+        <h1>Hello, {{ userName }}</h1>
+        <h2>Your information at a glance:</h2>
+      </div>
+      <div class="infoContainer" id="currentAddressContainer">
+        <h2>Your current residential address.</h2>
+        <h3>{{ currentView}}</h3>
+      </div>
+    </section>
+    <section>
+      <div class="infoHolder">
+        <div class="infoContainer">
+          <h4>Number of addresses saved in your Mapbook.</h4>
+          <p>{{ totalAddressesCount }}</p>
+        </div>
+        <div class="infoContainer">
+          <h4>Number of past addresses you have lived at.</h4>
+          <p>{{ pastAddressesCount }}</p>
+        </div>
+        <div class="infoContainer">
+          <h4>Number of total miles between all residences.</h4>
+          <p>{{ totalMiles }}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

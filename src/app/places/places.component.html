@@ -1,0 +1,15 @@
+<div class="container" id="flex">
+  <div class="subContainer" id="x">
+    <h2 routerLink="/places/places-lived" routerLinkActive="router-link-active">Lived At</h2>
+  </div>
+  <div class="subContainer" id="y">
+    <button
+      [ngClass]="[viewControl === true ? 'rightSwitch' : '!rightSwitch', viewControl === false? 'leftSwitch':'!leftSwitch']"
+      (click)="onChangeView()" routerLink="routerV">Switch<span>view</span></button>
+  </div>
+
+  <div class="subContainer" id="z">
+    <h2 routerLink="/places/places-visited" routerLinkActive="router-link-active">Visited</h2>
+  </div>
+</div>
+<router-outlet></router-outlet>

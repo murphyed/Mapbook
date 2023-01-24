@@ -1,0 +1,296 @@
+* {
+  color: #5a97c0;
+  text-decoration: none;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1rem;
+  font-size: 1.15rem;
+  margin-bottom: 2rem;
+  /* border: 2px solid red; */
+}
+
+.logoContainer {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.35rem;
+  height: 50px;
+  /* border: 2px solid gold; */
+}
+
+h1 {
+  /* padding-top: 0.75rem; */
+  display: flex;
+  color: #bbe1fa;
+  font-weight: 400;
+  letter-spacing: -0.13rem;
+  transition: 350ms;
+}
+h1:hover {
+  cursor: pointer;
+  color: #5a97c0;
+  /* text-shadow: 0 0 60px #BBE1FA; */
+}
+
+a {
+  transition: 300ms ease-in-out;
+}
+a:hover {
+  color: #bbe1fa;
+  cursor: pointer;
+  text-shadow: 0 0 100px #3282b8;
+}
+
+.bookLogo {
+  transform: translateY(-18px) translateX(1.45px);
+  letter-spacing: 0.32rem;
+  color: #bbe1fa;
+  font-weight: lighter;
+}
+
+.showBtn {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: #1b262c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 4px 4px 10px rgb(0, 0, 0, 0.35),
+    -2px -2px 10px rgb(187, 255, 250, 0.03);
+}
+
+.innerCircle {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background-color: #bbe1fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* safari */
+.inner1Active {
+  background-color: #1b262c;
+  animation-name: inner1Active;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: 600ms;
+  transform-origin: left;
+  transform: translateX(-260px) scale(9);
+  box-shadow: -0.25px -0.25px 0.5px rgb(0, 0, 0, 0.25),
+    0.25px 0.25px 0.5px rgb(187, 255, 250, 0.02);
+}
+
+/* safari */
+.inner1Inactive {
+  background-color: #bbe1fa;
+  animation-name: inner1Inactive;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: 600ms;
+  animation-delay: 400ms;
+  transition-delay: 400ms;
+  transform: translateX(0) scale(1);
+  transform-origin: right;
+  box-shadow: 0px 0px 0px 0px rgb(0, 0, 0, 0.25),
+    0px 0px 0px rgb(187, 255, 250, 0.03);
+}
+@keyframes inner1Active {
+  from {
+    transform: translateX(0);
+    background-color: #bbe1fa;
+  }
+  to {
+    background-color: #1b262c;
+    transform: translateX(-260px) scale(9);
+  }
+}
+@keyframes inner1Inactive {
+  from {
+    transform: translateX(-260px) scale(9);
+    background-color: #1b262c;
+  }
+  to {
+    transform: translateX(0);
+    background-color: #bbe1fa;
+  }
+}
+
+/* safari */
+.inner2Active {
+  background-color: #1b262c;
+  animation-name: inner2Active;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: 600ms;
+  animation-delay: 150ms;
+  transition-delay: 150ms;
+  transform: translateX(-190px) scale(9);
+  transform-origin: left;
+  box-shadow: -0.25px -0.25px 0.5px rgb(0, 0, 0, 0.25),
+    0.25px 0.25px 0.5px rgb(187, 255, 250, 0.02);
+}
+/* safari */
+.inner2Inactive {
+  background-color: #bbe1fa;
+  animation-name: inner2Inactive;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: 600ms;
+  animation-delay: 200ms;
+  transition-delay: 200ms;
+  transform: translateX(0px) scale(1);
+  transform-origin: right;
+  box-shadow: 0px 0px 0px 0px rgb(0, 0, 0, 0.25),
+    0px 0px 0px rgb(187, 255, 250, 0.03);
+}
+@keyframes inner2Active {
+  from {
+    transform: translateX(0) scale(1);
+    background-color: #bbe1fa;
+  }
+  to {
+    transform: translateX(-190px) scale(9);
+    background-color: #1b262c;
+  }
+}
+@keyframes inner2Inactive {
+  from {
+    transform: translateX(-190px) scale(9);
+    background-color: #1b262c;
+  }
+  to {
+    transform: translateX(0px) scale(1);
+    background-color: #bbe1fa;
+  }
+}
+
+/* safari */
+.inner3Active {
+  background-color: #1b262c;
+  animation-name: inner3Active;
+  animation-duration: 600ms;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: 600ms;
+  animation-delay: 300ms;
+  transition-delay: 300ms;
+  transform: translateX(-120px) scale(9);
+  transform-origin: left;
+  box-shadow: -0.25px -0.25px 0.5px rgb(0, 0, 0, 0.25),
+    0.25px 0.25px 0.5px rgb(187, 255, 250, 0.02);
+}
+/* safari */
+.inner3Inactive {
+  background-color: #bbe1fa;
+  animation-name: inner3Inactive;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+  transition: 600ms;
+  transform: translateX(0px) scale(1);
+  transform-origin: right;
+  box-shadow: 0px 0px 0px 0px rgb(0, 0, 0, 0.25),
+    0px 0px 0px rgb(187, 255, 250, 0.03);
+}
+@keyframes inner3Active {
+  from {
+    transform: translateX(0) scale(1);
+    background-color: #bbe1fa;
+  }
+  to {
+    transform: translateX(-120px) scale(9);
+    background-color: #1b262c;
+  }
+}
+@keyframes inner3Inactive {
+  from {
+    transform: translateX(-120px) scale(9);
+    background-color: #1b262c;
+  }
+  to {
+    transform: translateX(0px) scale(1);
+    background-color: #bbe1fa;
+  }
+}
+
+.icons {
+  opacity: 0;
+  transform: scale(0.1);
+  border-radius: 50%;
+  padding: 1rem;
+}
+/* safari */
+.iconsVisible {
+  opacity: 1;
+  animation-name: iconVisible;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  transition: 200ms;
+  transform-origin: center;
+  animation-delay: 200ms;
+  transition-delay: 200ms;
+}
+/* safari */
+.iconsHide {
+  opacity: 0;
+  animation-name: iconHide;
+  animation-duration: 1s;
+  animation-timing-function: ease-in;
+  transition: 600ms;
+  transform-origin: center;
+}
+@keyframes iconVisible {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes iconHide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+/* safari */
+.logout {
+  position: absolute;
+  transition: 600ms;
+  transition-delay: 0ms;
+  transform: scale(0.7);
+  transform-origin: center;
+  opacity: 0;
+  visibility: hidden;
+}
+/* safari */
+.logoutActive {
+  transform: scale(0.7) rotate(180deg);
+  transition-delay: 800ms;
+  opacity: 1;
+  visibility: visible;
+  padding: 0.5rem;
+}
+/* safari */
+input {
+  position: absolute;
+  isolation: isolate;
+  transform: scale(0.1);
+  background-color: transparent;
+}

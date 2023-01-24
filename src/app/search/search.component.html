@@ -1,0 +1,184 @@
+<div class="container">
+  <div class="subContainer">
+    <input class="searchInput" id="inputField" type="text" placeholder="Find Address To Add" [(ngModel)]="inputField"
+      (input)="textInput()" [ngClass]="inputFieldStatus === true ? 'searchInputFocus' : '!searchInputFocus'"
+      #searchField>
+    <div class="searchButton" id="searchButton" type="button" (click)="onButtonSubmit()" #searchButton>
+      <div class="circleOut" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseExit()"
+        [ngClass]="buttonValidState && inputFieldStatus === true ? 'circleOutFocus': '!circleOutFocus'">
+        <div class="circleIn" [ngClass]="inputFieldStatus === true ? 'circleInFocus' : '!CircleInFocus'"></div>
+        <div class="circleIn" [ngClass]="inputFieldStatus === true ? 'circleInFocus' : '!CircleInFocus'"></div>
+        <div class="circleIn" [ngClass]="inputFieldStatus === true ? 'circleInFocus' : '!CircleInFocus'"></div>
+      </div>
+      <div class="circleHandle" [ngClass]="inputFieldStatus === true ? 'circleHandleFocus':'!circleHandleFocus'">
+      </div>
+    </div>
+  </div>
+
+  <div class="mapContainer">
+    <div id="map" class="mapStyle" #map></div>
+    <div class="hideLine"></div>
+  </div>
+  <!-- <div class="searches" *ngFor="let search of searches; let i = index">
+    <p>{{ searches[i] }}</p>
+  </div> -->
+
+  <div class="buttonContainer">
+    <button class="activateBtn" (click)="openModal1()" #activeBtn1 [disabled]="btnDisabled">Lived</button>
+    <button class="activateBtn" (click)="openModal2()" #activeBtn2 [disabled]="btnDisabled">Current</button>
+    <button class="activateBtn" (click)="openModal3()" #activeBtn3 [disabled]="btnDisabled">Visited</button>
+  </div>
+
+  <form [formGroup]="newAddress" (ngSubmit)="newAddress">
+    <div *ngIf="modalNo === 1" class="modal" #modal1>
+      <div class="addressContainer" #addressContainer1>
+
+        <div class="subAddressContainer1">
+          <div class="buttonCloseModal" (mouseenter)="buttonLineActivate()" (mouseleave)="buttonLineDeactivate()"
+            (click)="closeModal1()">
+            <div [ngClass]="btnLineHover ? 'btnLine1Active':'btnLine1'"></div>
+            <div [ngClass]="btnLineHover ? 'btnLine2Active':'btnLine2'"></div>
+          </div>
+        </div>
+
+        <div class="subAddressContainer2">
+          <div id="infowindow-content" #infowindowContent class="infowindow">
+            <span id="place-address" class="title" #currentAddressView1></span>
+          </div>
+          <div class="inputContainer">
+            <label for="year">Year Moved:</label>
+            <input type="number" placeholder="yyyy" class="yearInput" formControlName="year"
+              (input)="checkYearMonthInput()" #yearInput1 min="1930" max="{{ currentYear }}">
+          </div>
+          <div class="inputContainer">
+            <label class="monthLabel" for="year">Month Moved:</label>
+            <select class="monthInput" formControlName="monthNumber" (input)="checkYearMonthInput()" #monthInput1>
+              <option value="1">Jan</option>
+              <option value="2">Feb</option>
+              <option value="3">Mar</option>
+              <option value="4">Apr</option>
+              <option value="5">May</option>
+              <option value="6">Jun</option>
+              <option value="7">Jul</option>
+              <option value="8">Aug</option>
+              <option value="9">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+            </select>
+          </div>
+          <div class="inputContainer">
+            <label class="monthLabel" for="year">Address 2:</label>
+            <input type="text" placeholder="Apt, Unit, Building" class="street2Input" formControlName="street2">
+          </div>
+        </div>
+        <div class="addContainer">
+          <button class="add" (click)="handleForm(newAddress)" [disabled]="formInput">+</button>
+          <p class="indication" #indication1>Added!</p>
+        </div>
+
+      </div>
+      <div class="overlay"></div>
+    </div>
+
+    <div *ngIf="modalNo === 2" class="modal" #modal2>
+      <div class="addressContainer" #addressContainer2>
+        <div class="subAddressContainer1">
+          <div class="buttonCloseModal" (mouseenter)="buttonLineActivate()" (mouseleave)="buttonLineDeactivate()"
+            (click)="closeModal2()">
+            <div [ngClass]="btnLineHover ? 'btnLine1Active':'btnLine1'"></div>
+            <div [ngClass]="btnLineHover ? 'btnLine2Active':'btnLine2'"></div>
+          </div>
+        </div>
+        <div class="subAddressContainer2">
+          <div id="infowindow-content" #infowindowContent class="infowindow">
+            <span id="place-address" class="title" #currentAddressView2></span>
+          </div>
+          <div class="inputContainer">
+            <label for="year">Year Moved:</label>
+            <input type="number" placeholder="yyyy" class="yearInput" formControlName="year" #yearInput2
+              (input)="checkYearMonthInput()" min="1930" max="{{ currentYear }}">
+          </div>
+          <div class="inputContainer">
+            <label class="monthLabel" for="month">Month Moved:</label>
+            <select class="monthInput" formControlName="monthNumber" #monthInput2 (input)="checkYearMonthInput()">
+              <option value="1">Jan</option>
+              <option value="2">Feb</option>
+              <option value="3">Mar</option>
+              <option value="4">Apr</option>
+              <option value="5">May</option>
+              <option value="6">Jun</option>
+              <option value="7">Jul</option>
+              <option value="8">Aug</option>
+              <option value="9">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+            </select>
+          </div>
+          <div class="inputContainer">
+            <label class="monthLabel" for="year">Address 2:</label>
+            <input type="text" placeholder="Apt, Unit, Building" class="street2Input" formControlName="street2">
+          </div>
+        </div>
+
+        <div class="addContainer">
+          <div [ngClass]="hover === true ? 'outerActive':'outer'">
+            <button class="currentBtn" (mouseenter)="changeBtnA()" (mouseleave)="changeBtnIa()" [disabled]="formInput"
+              (click)="handleForm(newAddress)"></button>
+          </div>
+          <p class="indication" #indication2>Updated!</p>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+
+    <div *ngIf="modalNo === 3" class="modal" #modal3>
+      <div class="addressContainer" #addressContainer3>
+        <div class="subAddressContainer1">
+          <div class="buttonCloseModal" (mouseenter)="buttonLineActivate()" (mouseleave)="buttonLineDeactivate()"
+            (click)="closeModal3()">
+            <div [ngClass]="btnLineHover ? 'btnLine1Active':'btnLine1'"></div>
+            <div [ngClass]="btnLineHover ? 'btnLine2Active':'btnLine2'"></div>
+          </div>
+        </div>
+        <div class="subAddressContainer2">
+          <div id="infowindow-content" #infowindowContent class="infowindow">
+            <span id="place-address" class="title" #currentAddressView3></span>
+          </div>
+          <div class="inputContainer">
+            <label for="year">Year Visited:</label>
+            <input type="number" placeholder="yyyy" class="yearInput" formControlName="year"
+              (input)="checkYearMonthInput()" #yearInput3 min="1930" max="{{ currentYear }}">
+          </div>
+          <div class="inputContainer">
+            <label class="monthLabel" for="year">Month Visited:</label>
+            <select class="monthInput" formControlName="monthNumber" (input)="checkYearMonthInput()" #monthInput3>
+              <option value="1">Jan</option>
+              <option value="2">Feb</option>
+              <option value="3">Mar</option>
+              <option value="4">Apr</option>
+              <option value="5">May</option>
+              <option value="6">Jun</option>
+              <option value="7">Jul</option>
+              <option value="8">Aug</option>
+              <option value="9">Sep</option>
+              <option value="10">Oct</option>
+              <option value="11">Nov</option>
+              <option value="12">Dec</option>
+            </select>
+          </div>
+          <div class="inputContainer">
+            <label class="monthLabel" for="year">Place Description:</label>
+            <input type="text" placeholder="name" class="street2Input" formControlName="street2">
+          </div>
+        </div>
+        <div class="addContainer">
+          <button class="add" (click)="handleForm(newAddress)" [disabled]="formInput">+</button>
+          <p class="indication" #indication3>Added!</p>
+        </div>
+      </div>
+      <div class="overlay"></div>
+    </div>
+  </form>
+</div>
