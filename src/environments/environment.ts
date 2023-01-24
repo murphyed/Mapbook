@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  gmApiKey: 'AIzaSyBctaEbiHL2xBML9DLeS0SyXIhiv2mTdJg',
+  gmApiKey: "add key",
 };
 
 /*
